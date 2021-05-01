@@ -24,5 +24,12 @@ public class Group {
         members.add(newMember);
     }
 
+    public int size(){
+        return members.size();
+    }
+
+    public ArrayList<Person> getMembers(){
+        return new ArrayList<Person>(members);
+    }
 
 }
