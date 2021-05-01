@@ -1,36 +1,52 @@
 package heig.smtp;
 
-public class SmptClient implements ISmtpClient {
+import heig.prank.Email;
+import heig.mail.Person;
 
-   private String SMTPaddress;
-   private int SMTPport;
-   
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.net.Socket;
 
-   private static final Logger LOG = Logger.getLogger(SMTPClient.class.getName());
+import java.util.Base64;
+import java.util.List;
+import java.util.logging.Logger;
 
-   private static final String CMD_HELLO = "HELO";
-   private static final String CMD_DATA  = "DATA";
-   private static final String CMD_FROM  = "MAIL FROM";
-   private static final String CMD_TO    = "RCPT TO";
-   private static final String CMD_QUIT  = "QUIT";
+public class SMTPClient implements ISMTPClient {
 
-   private static final String CR_LF       = "\r\n";
-   private static final String END_OF_MSG  = CR_LF + "." + CR_LF;
+    private String SMTPaddress;
+    private int SMTPport;
 
-   private static final String MSG_FROM    = "From";
-   private static final String MSG_TO      = "To";
-   private static final String MSG_CC      = "Cc";
-   private static final String MSG_SUBJECT = "Subject";
+    private Socket socket;
+    private PrintWriter printWriter;
+    private BufferedReader bufferedReader;
 
-   private static final String SMTP_ACTION_OKAY = "250";
+    private static final Logger LOG = Logger.getLogger(SMTPClient.class.getName());
 
-   private static final String CHARACTER_ENCODING = "UTF-8";
-   private static final String CONTENT_TYPE = "text/plain";
+    private static final String CMD_HELLO = "HELO";
+    private static final String CMD_DATA  = "DATA";
+    private static final String CMD_FROM  = "MAIL FROM";
+    private static final String CMD_TO    = "RCPT TO";
+    private static final String CMD_QUIT  = "QUIT";
 
-   private static final String DOMAIN = "JAY-Z.COM";
+    private static final String CR_LF       = "\r\n";
+    private static final String END_OF_MSG  = CR_LF + "." + CR_LF;
 
+    private static final String MSG_FROM    = "From";
+    private static final String MSG_TO      = "To";
+    private static final String MSG_CC      = "Cc";
+    private static final String MSG_SUBJECT = "Subject";
 
-   public SMTPClient(String address, int port){
+    private static final String SMTP_ACTION_OKAY = "250";
+
+    private static final String CHARACTER_ENCODING = "UTF-8";
+    private static final String CONTENT_TYPE = "text/plain";
+
+    private static final String DOMAIN = "JAY-Z.COM";
+
+    public SMTPClient(String address, int port){
         this.SMTPaddress = address;
         this.SMTPport = port;
     }
@@ -46,7 +62,6 @@ public class SmptClient implements ISmtpClient {
                 throw new IOException("Erreur de connexion.. ");
             }
 
-
             printWriter.write(String.format("%s %s%s", CMD_HELLO, DOMAIN, CR_LF));
             printWriter.flush();
             ignoreLines();
@@ -58,17 +73,15 @@ public class SmptClient implements ISmtpClient {
             printWriter.write(String.format("%s%s", CMD_QUIT, CR_LF));
             printWriter.flush();
 
-
             printWriter.close();
             bufferedReader.close();
             socket.close();
 
         } catch (IOException e) {
+            LOG.severe(e.getMessage());
 
-         System.out.println(e);
         }
     }
-
 
     private void sendEmail(Email email){
 
@@ -134,7 +147,4 @@ public class SmptClient implements ISmtpClient {
             LOG.severe(e.getMessage());
         }
     }
-
-
-
 }
