@@ -13,10 +13,10 @@ Configuration par défaut du serveur MockMock :
 | SMTP      | 2500 |
 | HTTP      | 8080 |
 
-Et bien évidemment, vous pouvez changer ces ports à votre guise. Pour ce faire, référez vous aux fichiers [docker-compose.yml](MockMockDocker/docker-compose.yml) et [mock_server.Dockerfile](MockMockDocker/mock_server.Dockerfile).
+Et bien évidemment, vous pouvez changer ces ports à votre guise. Pour ce faire, référez vous aux fichiers [docker-compose.yml](MockMockDocker/docker-compose.yml) et [mock_server.Dockerfile](MockMockDocker/mock_server.Dockerfile).  
 *Dans la balise port du docker-compose.yml vous trouverez la ligne "port1:port2". port1 correspond au port ouvert chez l'hôte et le port:2 au port ouvert dans le container*.
 
-Ainsi, pour lancer le docker, il vous suffit de vous déplacer dans le dosser `docker`, puis de lancer la commande suivante :   
+Ainsi, pour lancer le docker, il vous suffit de vous déplacer dans le dosser `MockMockDocker`, puis de lancer la commande suivante :   
 ```
 docker compose up
 ```   
