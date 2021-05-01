@@ -26,6 +26,18 @@ public class SmptClient implements ISmtpClient {
             }
 
 
+            printWriter.write(String.format("%s %s%s", CMD_HELLO, DOMAIN, CR_LF));
+            printWriter.flush();
+            ignoreLines();
+
+            for(Email email : emails){
+                sendEmail(email);
+            }
+
+            printWriter.write(String.format("%s%s", CMD_QUIT, CR_LF));
+            printWriter.flush();
+
+
             printWriter.close();
             bufferedReader.close();
             socket.close();
@@ -33,6 +45,72 @@ public class SmptClient implements ISmtpClient {
         } catch (IOException e) {
 
          System.out.println(e);
+        }
+    }
+
+
+    private void sendEmail(Email email){
+
+        printWriter.write(String.format("%s: %s%s", CMD_FROM, email.getSender().getEmail(), CR_LF));
+        printWriter.flush();
+        ignoreLines();
+
+        for(Person p : email.getReceivers().getMembers()){
+            printWriter.write(String.format("%s: %s%s", CMD_TO, p.getEmail(), CR_LF));
+            printWriter.flush();
+            ignoreLines();
+        }
+
+        if(email.getCCReceivers() != null){
+            for(Person p : email.getCCReceivers().getMembers()){
+                printWriter.write(String.format("%s: %s%s", CMD_TO, p.getEmail(), CR_LF));
+                printWriter.flush();
+                ignoreLines();
+            }
+        }
+
+
+        printWriter.write(String.format("%s%s", CMD_DATA, CR_LF));
+        printWriter.flush();
+
+
+        printWriter.write(String.format("%s: %s%s",MSG_FROM, email.getSender().getEmail(), CR_LF));
+        printWriter.flush();
+
+
+        for (Person victim : email.getReceivers().getMembers()) {
+            printWriter.write(String.format("%s: %s%s", MSG_TO, victim.getEmail(), CR_LF));
+        }
+        printWriter.flush();
+
+        if(email.getCCReceivers() != null){
+            for (Person victim : email.getCCReceivers().getMembers()) {
+                printWriter.write(String.format("%s: %s%s", MSG_CC, victim.getEmail(), CR_LF));
+            }
+            printWriter.flush();
+        }
+
+        printWriter.write(String.format("Content-Type: %s; charset=%s %s", CONTENT_TYPE, CHARACTER_ENCODING.toLowerCase(), CR_LF));
+        printWriter.write(String.format("%s: =?utf-8?B?%s?=%s%s", MSG_SUBJECT, Base64.getEncoder().encodeToString(email.getMessage().getSubject().getBytes()), CR_LF, CR_LF));
+
+        printWriter.write(String.format("%s%s", email.getMessage().getContent(), END_OF_MSG));
+        printWriter.flush();
+
+        ignoreLines();
+    }
+
+    private void ignoreLines(){
+        try{
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                LOG.info("SRV: " + line);
+                if(line.startsWith(SMTP_ACTION_OKAY+" ")){
+                    break;
+                }
+            }
+        }catch(Exception e){
+            LOG.severe("WE DO NOT UNDERSTAND THE SERVER.");
+            LOG.severe(e.getMessage());
         }
     }
 
