@@ -31,14 +31,14 @@ Voici les étapes pour lancer une campagne de prank :
 2. Avoir accès à un serveur SMTP. Par exemple MockMock.
 3. 
 
-*TODO expliquer fichiers de configuration.*
 
 ```
+git clone https://github.com/EricBroutba/RES_LABO3.git
+cd RES_LABO3
 mvn clean install
 mvn exec:java
 ```
-
-
+Et la compagne de prank devrait etre fonctionnelle 
 
 ## IMPLÉMENTATION :mag:
 *TODO*
