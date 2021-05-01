@@ -1,0 +1,10 @@
+services:
+  mock_server:
+    image: mock_server
+    container_name: mock_server_server
+    build:
+      context: .
+      dockerfile: mock_server.Dockerfile
+    ports:
+      - "2500:2500"
+      - "8080:8080"
