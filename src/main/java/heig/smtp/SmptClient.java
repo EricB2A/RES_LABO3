@@ -6,7 +6,28 @@ public class SmptClient implements ISmtpClient {
    private int SMTPport;
    
 
+   private static final Logger LOG = Logger.getLogger(SMTPClient.class.getName());
+
+   private static final String CMD_HELLO = "HELO";
+   private static final String CMD_DATA  = "DATA";
+   private static final String CMD_FROM  = "MAIL FROM";
+   private static final String CMD_TO    = "RCPT TO";
+   private static final String CMD_QUIT  = "QUIT";
+
+   private static final String CR_LF       = "\r\n";
+   private static final String END_OF_MSG  = CR_LF + "." + CR_LF;
+
+   private static final String MSG_FROM    = "From";
+   private static final String MSG_TO      = "To";
+   private static final String MSG_CC      = "Cc";
+   private static final String MSG_SUBJECT = "Subject";
+
+   private static final String SMTP_ACTION_OKAY = "250";
+
    private static final String CHARACTER_ENCODING = "UTF-8";
+   private static final String CONTENT_TYPE = "text/plain";
+
+   private static final String DOMAIN = "JAY-Z.COM";
 
 
    public SMTPClient(String address, int port){
