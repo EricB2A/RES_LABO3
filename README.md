@@ -1,4 +1,4 @@
-# RES_LABO3_POUBELLE 
+# RES_LABO3
 
 ## DESCRIPTION :mailbox_with_mail: 
 *TODO*
