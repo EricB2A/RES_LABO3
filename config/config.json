@@ -3,5 +3,5 @@
   "nbMembers" : 3,
   "smtpServerIp": "localhost",
   "smtpServerPort" : 2500,
-  "witnessesCC": []
+  "witnessesCC": ["ilias.gougjali@gmailc.socm"]
 }
