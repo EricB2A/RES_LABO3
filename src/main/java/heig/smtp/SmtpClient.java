@@ -1,7 +1,7 @@
 package heig.smtp;
 
-import heig.prank.Email;
-import heig.mail.Person;
+import heig.model.prank.Email;
+import heig.model.email.Person;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,6 +11,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 import java.util.Base64;
+
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -21,7 +22,7 @@ import java.util.logging.Logger;
  * Implémentation d'un client SMTP, permettant d'envoyer des courriels via la procotole SMTP.
  * Ne gère pas les protocoles SSL/TLS.
  */
-public class SMTPClient implements ISMTPClient {
+public class SmtpClient implements ISmtpClient {
 
     private String SMTPaddress;
     private int SMTPport;
@@ -30,7 +31,7 @@ public class SMTPClient implements ISMTPClient {
     private PrintWriter printWriter;
     private BufferedReader bufferedReader;
 
-    private static final Logger LOG = Logger.getLogger(SMTPClient.class.getName());
+    private static final Logger LOG = Logger.getLogger(SmtpClient.class.getName());
 
     private static final String CMD_HELLO = "HELO";
     private static final String CMD_DATA  = "DATA";
@@ -58,13 +59,13 @@ public class SMTPClient implements ISMTPClient {
      * @param address l'adresse du serveur SMTP
      * @param port et le port bindé
      */
-    public SMTPClient(String address, int port){
+    public SmtpClient(String address, int port){
         this.SMTPaddress = address;
         this.SMTPport = port;
     }
 
     /**
-     * Envoi les emails un a un au serveur SMTP, à travers la même connnexion. 
+     * Envoi les emails un a un au serveur SMTP, à travers la même connnexion.
      * @param emails liste d'emails à envoyer. CF. interface Email pour plus  d'infos. sur ses attributs.
      */
     public void sendEmails(List<Email> emails){
@@ -170,4 +171,5 @@ public class SMTPClient implements ISMTPClient {
             LOG.severe(e.getMessage());
         }
     }
+
 }
