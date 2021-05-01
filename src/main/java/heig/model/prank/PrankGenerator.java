@@ -17,7 +17,6 @@ public class PrankGenerator {
     private static final Logger LOG = Logger.getLogger(PrankGenerator.class.getName());
     public List<Email> generatePranks(int nbGroups, int nbMembers, List<Person> victims, List<Person> ccWitnesses, List<Message> messages ) {
 
-        // TODO check config : throw des exceptions si la taille ne sont pas ok
         // S'il n'y a pas assez de victims pour faire un groupe, on adapte la taille des groupes
         // En gardant le même nombre de victimes par groupes.
         if (victims.size() / nbGroups < nbMembers) {
@@ -35,9 +34,7 @@ public class PrankGenerator {
         int indexMessage = 0;
         for (Group group : groups) {
             Prank prank = new Prank();
-
-            // TODO voir si nécessaire de faire un random pour le sender sachant qu'il y a déjà un random pour générer les groupes
-            // TODO voir si ok de supprimer l'envoyer du groupe
+            
             prank.setSender(group.removeMember(0));
             prank.setReceivers(group);
             prank.setMessage(messages.get(indexMessage));

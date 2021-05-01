@@ -27,7 +27,6 @@ public class ConfigManager {
 
     private static ConfigManager instance;
 
-    // TODO check qu'il fasse une copie de la liste et ne renvoie pas simplement la réf
     @Getter
     private List<Person> victims = null;
 
