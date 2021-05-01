@@ -23,6 +23,13 @@ public class Group {
         if(members.contains(newMember)) return;
         members.add(newMember);
     }
+    public Person getMember(int index ) {
+        return members.get(index);
+    }
+
+    public Person removeMember(int index){
+        return members.remove(index);
+    }
 
     public int size(){
         return members.size();
