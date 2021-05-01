@@ -14,6 +14,13 @@ import java.util.Base64;
 import java.util.List;
 import java.util.logging.Logger;
 
+/**
+ * @author Eric Bousbaa, Ilias Goujgali
+ * @version 1.0
+ *
+ * Implémentation d'un client SMTP, permettant d'envoyer des courriels via la procotole SMTP.
+ * Ne gère pas les protocoles SSL/TLS.
+ */
 public class SMTPClient implements ISMTPClient {
 
     private String SMTPaddress;
@@ -46,12 +53,20 @@ public class SMTPClient implements ISMTPClient {
 
     private static final String DOMAIN = "JAY-Z.COM";
 
+    /**
+     * Notre connexion au serveur SMTP nécessite deux éléments.
+     * @param address l'adresse du serveur SMTP
+     * @param port et le port bindé
+     */
     public SMTPClient(String address, int port){
         this.SMTPaddress = address;
         this.SMTPport = port;
     }
 
-
+    /**
+     * Envoi les emails un a un au serveur SMTP, à travers la même connnexion. 
+     * @param emails liste d'emails à envoyer. CF. interface Email pour plus  d'infos. sur ses attributs.
+     */
     public void sendEmails(List<Email> emails){
         try {
             Socket socket = new Socket(SMTPaddress, SMTPport);
@@ -83,6 +98,10 @@ public class SMTPClient implements ISMTPClient {
         }
     }
 
+    /**
+     * Envoi d'un email. On suppose la connexion au serveur SMTP ouverte.
+     * @param email email à envoyer.
+     */
     private void sendEmail(Email email){
 
         printWriter.write(String.format("%s: %s%s", CMD_FROM, email.getSender().getEmail(), CR_LF));
@@ -133,6 +152,10 @@ public class SMTPClient implements ISMTPClient {
         ignoreLines();
     }
 
+
+    /**
+     * Logs les lignes envoyées par le serveur.
+     */
     private void ignoreLines(){
         try{
             String line;
