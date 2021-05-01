@@ -1,4 +1,9 @@
 package heig.smtp;
 
-public interface ISmtpClient {
+import heig.prank.Email;
+
+import java.util.List;
+
+public interface ISMTPClient {
+    void sendEmails(List<Email> emails);
 }
