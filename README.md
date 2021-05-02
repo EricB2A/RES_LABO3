@@ -1,6 +1,6 @@
 # RES_LABO3
 
-## DESCRIPTION :mailbox_with_mail: 
+## DESCRIPTION :mailbox_with_mail:
 Dans le cadre de notre cours RES, nous avons dû réaliser un programme qui permet de réaliser une campagne de prank par e-mail,
 c'est-à-dire, envoyer une série des par courrier électronique à plusieurs groupes de personnes en usurpant à chaque fois
 l'identité d'un des membres de ces groupes pour envoyer l'e-mail le faisant ainsi passé pour l'expéditeur.
@@ -10,25 +10,25 @@ l'identité d'un des membres de ces groupes pour envoyer l'e-mail le faisant ain
 Pour mocker notre serveur SMTP, nous avons utilisé [MockMock](https://github.com/tweakers/MockMock).
 Ce serveur est serveur se lance via un `jar` et, nous avons créé une image docker automatisant tout ça.
 
-Configuration par défaut du serveur MockMock : 
+Configuration par défaut du serveur MockMock :
 | PROTOCOLE | PORT |
 |-----------|------|
 | SMTP      | 2500 |
 | HTTP      | 8080 |
 
-Et bien évidemment, vous pouvez changer ces ports à votre guise. Pour ce faire, référez-vous aux fichiers [docker-compose.yml](MockMockDocker/docker-compose.yml) et [mock_server.Dockerfile](MockMockDocker/mock_server.Dockerfile).    
+Et bien évidemment, vous pouvez changer ces ports à votre guise. Pour ce faire, référez-vous aux fichiers [docker-compose.yml](MockMockDocker/docker-compose.yml) et [mock_server.Dockerfile](MockMockDocker/mock_server.Dockerfile).
 
 *Dans la balise port du docker-compose.yml vous trouverez la ligne "port1:port2". port1 correspond au port ouvert chez l'hôte et le port:2 au port ouvert dans le container*.
 
-Ainsi, pour lancer docker il vous suffit d'exécuter les commandes suivantes : 
+Ainsi, pour lancer docker il vous suffit d'exécuter les commandes suivantes :
 ```
 cd MockMockDocker
 docker compose up
-```   
+```
 et vous avez un serveur SMTP qui tourne en local ! :sunglasses:
 
 ## COMPAGNE DE PRANK :fire:
-Voici les étapes pour lancer une campagne de prank : 
+Voici les étapes pour lancer une campagne de prank :
 1. Cloner ce repository.
 2. Avoir accès à un serveur SMTP. Par exemple MockMock.
 3. Configurer l'accès au serveur SMTP, les prankés et les messages envoyés.
@@ -36,7 +36,7 @@ Voici les étapes pour lancer une campagne de prank :
 
 
 Vous aurez besoin de deux terminaux (terminals ?) pour lancer une compagne de prank.
-- Le premier pour faire [tourner Docker](https://github.com/EricBroutba/RES_LABO3/#docker-whale2). 
+- Le premier pour faire [tourner Docker](https://github.com/EricBroutba/RES_LABO3/#docker-whale2).
 - Le second pour exécuter le programme.
 
 **Étape 1 :** Cloner le repository.
@@ -49,9 +49,9 @@ cd LABO3_BOUSBAA_GOUJGALI
 
 
 **Étape 3 :** Éditer les fichiers de configuration (dans le dossier `/config` ):
-    * config.json contient diverses configurations notamment les infos du serveur SMTP.
 
-      ```js
+<i>config.json</i> contient diverses configurations notamment les infos du serveur SMTP.
+```json
       {
         "nbGroups": 3,                                // Nombre de groupes à créer
         "nbMembers" : 3,                              // Nombre de personnes minimum dans un groupe
@@ -59,9 +59,10 @@ cd LABO3_BOUSBAA_GOUJGALI
         "smtpServerPort" : 2500,                      // Port du serveur SMTP à utiliser
         "witnessesCC": ["ilias.gougjali@gmailc.socm"] // Adresses e-mails des témoins (CC)
       }
-      ```
-    * messages.json contient les pranks/messages qui seront utilisés
-        ```js
+```
+
+<i>messages.json</i> contient les pranks/messages qui seront utilisés
+```json
             [
                 {
                     "title": "Un titre",               // Titre du prank
@@ -69,15 +70,17 @@ cd LABO3_BOUSBAA_GOUJGALI
                 },
                 //...                                      Ajouter d'autre prank
             ]
-      ```
-    * victimes.json contient les adresses e-mails des victimes 
-      ```js
-      [
+
+```
+<i>victimes.json</i> contient les adresses e-mails des victimes
+
+```json
+        [
          "tillman.austin@hotmail.com", // adresses e-mails des victimes
          "brussel@hotmail.com"
           //...
-         ]
-      ```
+        ]
+```
 
 **Étape 4 :** Lancer la compagne de prank. Assurez-vous d'être à la racine du repo, à la hauteur du fichier `pom.xml`.
 ```bash
@@ -100,3 +103,5 @@ Ci-dessus, l'UML de notre programme. Voici un descriptif des classes des plus im
 ### Fonctionnement
 Au lancement de l'application, la classe <i>Main</i> se charge d'instancier le <i>ConfigManager</i>. Ce dernier va lire et stocker tous les fichiers de configuration.
 Ensuite, ces informations sont données au <i>PrankManager</i> qui se chargera de créer les <i>Prank</i>s. Enfin, les pranks sont envoyés par SMTPClient
+
+
