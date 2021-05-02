@@ -51,35 +51,35 @@ cd LABO3_BOUSBAA_GOUJGALI
 **Étape 3 :** Éditer les fichiers de configuration (dans le dossier `/config` ):
 
 <i>config.json</i> contient diverses configurations notamment les infos du serveur SMTP.
-```json
-      {
-        "nbGroups": 3,                                // Nombre de groupes à créer
-        "nbMembers" : 3,                              // Nombre de personnes minimum dans un groupe
-        "smtpServerIp": "localhost",                  // Adresse du serveur SMTP
-        "smtpServerPort" : 2500,                      // Port du serveur SMTP à utiliser
-        "witnessesCC": ["ilias.gougjali@gmailc.socm"] // Adresses e-mails des témoins (CC)
-      }
+```js
+    {
+    "nbGroups": 3,                                // Nombre de groupes à créer
+    "nbMembers" : 3,                              // Nombre de personnes minimum dans un groupe
+    "smtpServerIp": "localhost",                  // Adresse du serveur SMTP
+    "smtpServerPort" : 2500,                      // Port du serveur SMTP à utiliser
+    "witnessesCC": ["ilias.gougjali@gmailc.socm"] // Adresses e-mails des témoins (CC)
+    }
 ```
 
 <i>messages.json</i> contient les pranks/messages qui seront utilisés
-```json
-            [
-                {
-                    "title": "Un titre",               // Titre du prank
-                    "content": "Un contenu du message" // Contenu du prank
-                },
-                //...                                      Ajouter d'autre prank
-            ]
+```js
+    [
+        {
+            "title": "Un titre",               // Titre du prank
+            "content": "Un contenu du message" // Contenu du prank
+        },
+        //...                                      Ajouter d'autre prank
+    ]
 
 ```
 <i>victimes.json</i> contient les adresses e-mails des victimes
 
-```json
-        [
-         "tillman.austin@hotmail.com", // adresses e-mails des victimes
-         "brussel@hotmail.com"
-          //...
-        ]
+```js
+    [
+        "tillman.austin@hotmail.com", // adresses e-mails des victimes
+        "brussel@hotmail.com"
+        //...
+    ]
 ```
 
 **Étape 4 :** Lancer la compagne de prank. Assurez-vous d'être à la racine du repo, à la hauteur du fichier `pom.xml`.
