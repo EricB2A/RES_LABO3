@@ -72,7 +72,7 @@ Et la compagne de prank devrait être fonctionnelle
 
 ## IMPLÉMENTATION :mag:
 ### UML
-![UML](./res_uml.png)
+![UML](./uml/res_uml.png)
 Ci-dessus, l'UML de notre programme. Voici un descriptif des classes des plus importantes:
 * <i>ConfigManager</i> permet la lecture et le stockage des différents fichiers de configuration nécessaire au fonctionnement de l'application.
 * <i>PrankGenerator</i> permet de générer des pranks. Ceci en formant des groupes avec les victimes et les messages fournit en paramètre
