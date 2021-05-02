@@ -38,8 +38,48 @@ cd RES_LABO3
 mvn clean install
 mvn exec:java
 ```
-Et la compagne de prank devrait etre fonctionnelle 
+4. Editer les fichiers de configuration (dans le dossier `/config` ):
+    * config.json contient divers configurations notamment les infos du serveur SMTP.
+      ```json
+      {
+        "nbGroups": 3,                                // Nombre de groupes à créer
+        "nbMembers" : 3,                              // Nombre de personnes minimum dans un groupe
+        "smtpServerIp": "localhost",                  // Adresse du serveur SMTP
+        "smtpServerPort" : 2500,                      // Port du serveur SMTP à utiliser
+        "witnessesCC": ["ilias.gougjali@gmailc.socm"] // Adresses e-mails des témoins (CC)
+      }
+      ```
+    * messages.json contient les pranks/messages qui seront utilisés
+        ```json
+            [
+                {
+                    "title": "Un titre",               // Titre du prank
+                    "content": "Un contenu du message" // Contenu du prank
+                },
+                ...                                    // Ajouter d'autre prank
+            ]
+      ```
+    * victimes.json contient les adresses e-mails des vitimes
+      ```json
+      [
+         "tillman.austin@hotmail.com", // adresses e-mails des victimes
+         "brussel@hotmail.com"
+          ...
+         ]
+      ```
+
+Et la compagne de prank devrait être fonctionnelle 
 
 ## IMPLÉMENTATION :mag:
-*TODO*
-NOTE: Faudrait ajouter l'UML ici ! 
+### UML
+![UML](./res_uml.png)
+Ci-dessus, l'UML de notre programme. Voici un descriptif des classes des plus importantes:
+* <i>ConfigManager</i> permet la lecture et le stockage des différents fichiers de configuration nécessaire au fonctionnement de l'application.
+* <i>PrankGenerator</i> permet de générer des pranks. Ceci en formant des groupes avec les victimes et les messages fournit en paramètre
+* <i>Prank</i> est la représentation d'un e-mail qui est une blague. Il contient notamment l'expéditeurs, les destinataire et le contenu de l'e-mail.
+* <i>SMTPClient</i> est la classe qui se charge d'envoyer le prank/email a proprement dit. Elle se connecte au serveur SMTP en utilisant les paramètres fournit(provenant du ConfigManager)
+
+
+### Fonctionement
+Au lancement de l'application, la classe <i>Main</i> se charge d'instancier le <i>ConfigManager</i>. Ce dernier va lire et stocker tous les fichiers de configuration.
+Ensuite, ces informations sont données au <i>PrankManager</i> qui se chargera de créer les <i>Prank</i>s. Enfin, les pranks sont envoyé par SMTPClient
