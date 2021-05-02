@@ -17,10 +17,12 @@ Configuration par défaut du serveur MockMock :
 | HTTP      | 8080 |
 
 Et bien évidemment, vous pouvez changer ces ports à votre guise. Pour ce faire, référez vous aux fichiers [docker-compose.yml](MockMockDocker/docker-compose.yml) et [mock_server.Dockerfile](MockMockDocker/mock_server.Dockerfile).    
+
 *Dans la balise port du docker-compose.yml vous trouverez la ligne "port1:port2". port1 correspond au port ouvert chez l'hôte et le port:2 au port ouvert dans le container*.
 
-Ainsi, pour lancer le docker, il vous suffit de vous déplacer dans le dosser `MockMockDocker`, puis de lancer la commande suivante :   
+Ainsi, pour lancer docker il vous suffit d'exécuter les commandes suivantes : 
 ```
+cd MockMockDocker
 docker compose up
 ```   
 et vous avez un serveur SMTP qui tourne en local ! :sunglasses:
@@ -34,8 +36,8 @@ Voici les étapes pour lancer une campagne de prank :
 
 
 Vous aurez besoin de deux terminaux (terminals ?) pour lancer une compagne de prank.
-- La première pour faire [tourner Docker](https://github.com/EricBroutba/RES_LABO3/#docker-whale2). 
-- La seconde pour exécuter le programme.
+- Le premier pour faire [tourner Docker](https://github.com/EricBroutba/RES_LABO3/#docker-whale2). 
+- Le second pour exécuter le programme.
 
 **Étape 1 :** Cloner le repository.
 ```bash
@@ -48,6 +50,7 @@ cd LABO3_BOUSBAA_GOUJGALI
 
 **Étape 3 :** Éditer les fichiers de configuration (dans le dossier `/config` ):
     * config.json contient divers configurations notamment les infos du serveur SMTP.
+
       ```js
       {
         "nbGroups": 3,                                // Nombre de groupes à créer
@@ -82,7 +85,7 @@ mvn clean install
 mvn exec:java
 ```
 
-Et la compagne de prank devrait être fonctionnelle 
+Et voilà ! :+1:
 
 ## IMPLÉMENTATION :mag:
 ### UML
