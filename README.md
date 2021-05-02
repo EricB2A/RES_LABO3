@@ -29,16 +29,24 @@ et vous avez un serveur SMTP qui tourne en local ! :sunglasses:
 Voici les étapes pour lancer une campagne de prank : 
 1. Cloner ce repository.
 2. Avoir accès à un serveur SMTP. Par exemple MockMock.
-3. 
+3. Configurer l'accès au serveur SMTP, les prankés et les messages envoyés.
+4. Installer les dépendances et lancer le programme !
 
 
+Vous aurez besoin de deux terminaux (terminals ?) pour lancer une compagne de prank.
+- La première pour faire [tourner Docker](https://github.com/EricBroutba/RES_LABO3/#docker-whale2). 
+- La seconde pour exécuter le programme.
+
+**Étape 1 :** Cloner le repository.
+```bash
+git clone https://github.com/EricBroutba/RES_LABO3.git LABO3_BOUSBAA_GOUJGALI
+cd LABO3_BOUSBAA_GOUJGALI
 ```
-git clone https://github.com/EricBroutba/RES_LABO3.git
-cd RES_LABO3
-mvn clean install
-mvn exec:java
-```
-4. Editer les fichiers de configuration (dans le dossier `/config` ):
+
+**Étape 2 :** [Lancer le serveur Docker](https://github.com/EricBroutba/RES_LABO3/#docker-whale2).
+
+
+**Étape 3 :** Éditer les fichiers de configuration (dans le dossier `/config` ):
     * config.json contient divers configurations notamment les infos du serveur SMTP.
       ```js
       {
@@ -67,6 +75,12 @@ mvn exec:java
           //...
          ]
       ```
+
+**Étape 4 :** Lancer la compagne de prank. Assurez-vous d'être à la racine du repo, à la hauteur du fichier `pom.xml`.
+```bash
+mvn clean install
+mvn exec:java
+```
 
 Et la compagne de prank devrait être fonctionnelle 
 
