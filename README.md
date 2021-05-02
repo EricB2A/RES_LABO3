@@ -1,9 +1,9 @@
 # RES_LABO3
 
 ## DESCRIPTION :mailbox_with_mail:
-Dans le cadre de notre cours RES, nous avons dû réaliser un programme qui permet de réaliser une campagne de prank par e-mail,
-c'est-à-dire, envoyer une série des par courrier électronique à plusieurs groupes de personnes en usurpant à chaque fois
-l'identité d'un des membres de ces groupes pour envoyer l'e-mail le faisant ainsi passé pour l'expéditeur.
+Dans le cadre de notre cours RES, nous avons dû réaliser un programme qui permet d'effectuer une campagne de prank par e-mail,
+c'est-à-dire, envoyer une série de blagues par courrier électronique à plusieurs groupes de personnes en usurpant à chaque fois
+l'identité d'un des membres de ces groupes pour envoyer l'e-mail le faisant ainsi passer pour l'expéditeur.
 
 
 ## DOCKER MOCKING SERVEUR SMTP :whale2:
