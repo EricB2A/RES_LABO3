@@ -101,7 +101,8 @@ Ci-dessus, l'UML de notre programme. Voici un descriptif des classes des plus im
 
 
 ### Fonctionnement
-Au lancement de l'application, la classe <i>Main</i> se charge d'instancier le <i>ConfigManager</i>. Ce dernier va lire et stocker tous les fichiers de configuration.
-Ensuite, ces informations sont données au <i>PrankManager</i> qui se chargera de créer les <i>Prank</i>s. Enfin, les pranks sont envoyés par SMTPClient
+Au lancement de l'application, la classe <i>Main</i> se charge d'instancier le <i>PrankGenerator</i>, le <i>SMTPClient</i> et le <i>ConfigManager</i>. Ce dernier va lire et stocker tous les fichiers de configuration. 
+Ensuite, ces informations sont données au <i>PrankManager</i> qui se chargera de créer les <i>Prank</i>s. Enfin, les pranks sont envoyés par <i>SMTPClient</i>.
+
 
 
