@@ -40,7 +40,7 @@ mvn exec:java
 ```
 4. Editer les fichiers de configuration (dans le dossier `/config` ):
     * config.json contient divers configurations notamment les infos du serveur SMTP.
-      ```json
+      ```js
       {
         "nbGroups": 3,                                // Nombre de groupes à créer
         "nbMembers" : 3,                              // Nombre de personnes minimum dans un groupe
@@ -50,21 +50,21 @@ mvn exec:java
       }
       ```
     * messages.json contient les pranks/messages qui seront utilisés
-        ```json
+        ```js
             [
                 {
                     "title": "Un titre",               // Titre du prank
                     "content": "Un contenu du message" // Contenu du prank
                 },
-                ...                                    // Ajouter d'autre prank
+                //...                                      Ajouter d'autre prank
             ]
       ```
     * victimes.json contient les adresses e-mails des vitimes
-      ```json
+      ```js
       [
          "tillman.austin@hotmail.com", // adresses e-mails des victimes
          "brussel@hotmail.com"
-          ...
+          //...
          ]
       ```
 
